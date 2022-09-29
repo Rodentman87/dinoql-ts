@@ -1,0 +1,22 @@
+{
+	"name": "dinoql-ts",
+	"version": "1.0.0",
+	"main": "dist/index.js",
+	"license": "MIT",
+	"scripts": {
+		"prebuild": "rimraf dist",
+		"build": "tsc",
+		"pretest": "yarn generate",
+		"test": "yarn build && node ./dist/test.js",
+		"generate": "node ./scripts/generate.js"
+	},
+	"dependencies": {
+		"peggy": "^2.0.1",
+		"ts-pegjs": "^2.1.0"
+	},
+	"devDependencies": {
+		"@types/node": "^18.6.4",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.7.4"
+	}
+}

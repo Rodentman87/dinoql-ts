@@ -1,0 +1,41 @@
+scalar Date string;
+
+enum UserRole {
+	GUEST,
+	USER,
+	ADMIN
+}
+
+interface UserCreateInput {
+	username: string;
+	displayName?: string;
+	email: string;
+	password: string;
+}
+
+resource User {
+	#id: integer;
+	username: string;
+	createdAt: Date;
+	role: UserRole;
+	displayName?: string;
+	friends: [User];
+	
+	static query findByName(name: string): [User];
+	
+	static query test(roles: [UserRole]): boolean;
+	
+	static action create(options: UserCreateInput): User;
+}
+
+static resource Me {
+	#id: integer;
+	username: string;
+	displayName?: string;
+	role: UserRole;
+	email: string;
+	
+	action changeEmail(newEmail: string): Me;
+	
+	action sendFriendRequest(user: User): boolean;
+}
